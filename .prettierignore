@@ -1,0 +1,14 @@
+# Build output
+dist
+
+# Dependencies
+node_modules
+
+# Generated design-token CSS (authored upstream in tokens/tokens.json)
+src/styles/tokens.css
+
+# Lockfile
+package-lock.json
+
+# Author-owned decision record — never auto-reformat (provisional, human-edited)
+DECISIONS.md

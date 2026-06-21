@@ -1,0 +1,47 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --kio-color-brand-primary: oklch(0.55 0.18 255); /** Primary action color — placeholder blue so the token pipeline is visibly distinct from shadcn defaults. */
+  --kio-color-brand-primary-hover: oklch(0.5 0.18 255); /** Primary, hovered/active. */
+  --kio-color-brand-primary-foreground: oklch(0.985 0 0); /** Text/icon color on top of primary. */
+  --kio-color-neutral-50: oklch(0.985 0 0);
+  --kio-color-neutral-100: oklch(0.97 0 0);
+  --kio-color-neutral-200: oklch(0.922 0 0);
+  --kio-color-neutral-300: oklch(0.87 0 0);
+  --kio-color-neutral-400: oklch(0.708 0 0);
+  --kio-color-neutral-500: oklch(0.556 0 0);
+  --kio-color-neutral-600: oklch(0.439 0 0);
+  --kio-color-neutral-700: oklch(0.371 0 0);
+  --kio-color-neutral-800: oklch(0.269 0 0);
+  --kio-color-neutral-900: oklch(0.205 0 0);
+  --kio-color-semantic-background: oklch(1 0 0);
+  --kio-color-semantic-foreground: oklch(0.145 0 0);
+  --kio-spacing-1: 0.25rem;
+  --kio-spacing-2: 0.5rem;
+  --kio-spacing-3: 0.75rem;
+  --kio-spacing-4: 1rem;
+  --kio-spacing-5: 1.25rem;
+  --kio-spacing-6: 1.5rem;
+  --kio-spacing-8: 2rem;
+  --kio-radius-sm: 0.375rem;
+  --kio-radius-md: 0.5rem;
+  --kio-radius-lg: 0.625rem;
+  --kio-font-family-sans: 'Geist Variable', system-ui, sans-serif;
+  --kio-font-family-mono: ui-monospace, 'Geist Mono', monospace;
+  --kio-font-size-xs: 0.75rem;
+  --kio-font-size-sm: 0.875rem;
+  --kio-font-size-base: 1rem;
+  --kio-font-size-lg: 1.125rem;
+  --kio-font-size-xl: 1.25rem;
+  --kio-font-size-2xl: 1.5rem;
+  --kio-font-weight-regular: 400;
+  --kio-font-weight-medium: 500;
+  --kio-font-weight-semibold: 600;
+  --kio-font-weight-bold: 700;
+  --kio-font-line-height-tight: 1.25;
+  --kio-font-line-height-normal: 1.5;
+  --kio-font-line-height-relaxed: 1.75;
+  --kio-color-semantic-border: var(--kio-color-neutral-200); /** Alias → neutral.200. Demonstrates DTCG references resolving through Style Dictionary. */
+}
