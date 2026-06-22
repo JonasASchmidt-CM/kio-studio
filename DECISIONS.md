@@ -58,6 +58,9 @@ App must be modular with swappable parts. Feature flags needed to expose feature
 ### O4 — Offline support
 PWA / service worker (e.g. Vite PWA plugin) to cover unstable connections. Confirm whether on-prem deployments need it. **Eng to scope.**
 
+### O5 — Test framework / runner
+No test tooling is installed yet — there is no `npm test`. Pick a unit/component runner (e.g. **Vitest**, Vite-native, vs. Jest), an E2E approach (e.g. **Playwright**), and the **WCAG 2.1 AA** automated-testing layer required by D6 (e.g. `axe-core` / `jest-axe`, or Playwright + axe). **Eng to decide**; record as its own ADR and wire the chosen `test` script(s) into `package.json`.
+
 ---
 
 ## What engineering should pressure-test first

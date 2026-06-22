@@ -24,7 +24,7 @@ Backlog for KIO Studio. Grouped by theme. Items reference `DECISIONS.md`
 These run on the CoreMedia work laptop, after the repo is in the work GitHub org
 and around the brand-token / style-definition phase.
 
-- [ ] **Run `claude init`, then paste this prompt:** _"Merge your findings into
+- [x] **Run `claude init`, then paste this prompt:** _"Merge your findings into
       the existing CLAUDE.md. Keep it as a lean index that points to DESIGN.md,
       ARCHITECTURE.md, CODE_STYLE.md, INTEGRATION.md and DECISIONS.md (use @path
       references, don't copy their contents). Only add what you can't infer from
@@ -38,7 +38,8 @@ and around the brand-token / style-definition phase.
 ## Accessibility (WCAG 2.1 AA — D6)
 
 - [ ] Add automated a11y testing (e.g. `axe-core` / `jest-axe` or Playwright +
-      axe) to complement `jsx-a11y` static linting.
+      axe) to complement `jsx-a11y` static linting — part of the test-framework
+      decision (O5).
 - [ ] Establish a manual a11y checklist: keyboard nav, focus order, visible
       focus, contrast, screen-reader pass.
 
@@ -51,7 +52,18 @@ and around the brand-token / style-definition phase.
 - [ ] **Offline/PWA** support — leave room now, scope later (O4).
 - [ ] **Deployment model** on-prem vs managed PaaS/K8s; secrets + LLM key
       custody (O1).
+- [ ] **Test framework / runner** — none installed yet (no `npm test`); choose a
+      unit/component runner (Vitest vs. Jest) + E2E (Playwright), wire the `test`
+      script into `package.json`, and fold in the a11y testing layer below (O5, D6).
 - [ ] Reconsider ESLint v10 once `eslint-plugin-jsx-a11y` supports it.
+- [ ] **Type-aware ESLint** — the config extends `tseslint.configs.recommended`
+      (syntactic only). For a production app, consider
+      `recommendedTypeChecked` / `strictTypeChecked` (set `parserOptions.project`
+      to the `tsconfig`s) and optionally `eslint-plugin-react-x` /
+      `eslint-plugin-react-dom`; weigh the added rules against lint speed.
+- [ ] **React Compiler** — not enabled (Vite default). Evaluate turning it on for
+      runtime perf, weighing its dev/build-time cost against the build-speed
+      priority (DECISIONS.md priority #1).
 
 ## Integration (BE)
 
