@@ -21,6 +21,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - App shell screen demonstrating end-to-end token theming.
 - Harness docs: README, CLAUDE, DESIGN, ARCHITECTURE, CODE_STYLE, INTEGRATION,
   STATUS, TODO, and this changelog.
+- **App-layout shell** (`src/app/layout`): sticky brand-gradient header
+  (site/locale, notifications, user menu), collapsible nav sidebar, contextual
+  sidebar, and the main workspace.
+- **Chat experience** (`src/app/workspace`): centred blank-slate `ChatHome`
+  (KIO avatar + white corona, greeting, gradient suggestion chips, prompt,
+  footer), the floating "KIO Copilot" `ChatSidebar` the chat moves into when a
+  view is surfaced, `SurfacedView` canvas, and a shared `PromptBox` — built from
+  the Figma "Chat Area" (146:4541) and "Chat Sidebar" (174:3892) designs.
+- **Brand marks** (`src/shared/brand`): `KioAvatar`, `KioSparkleMark`,
+  `KioSendGlyph`, and a bundled `UserAvatar` photo (no runtime external request).
+- **Icons**: `bookmarks` and `history` added to the self-owned set.
+
+### Changed
+
+- **Typography**: replaced the Geist placeholder with the design-system
+  typefaces — **DM Sans** (headings) + **Roboto** (body) — as `font.family`
+  tokens, loaded via `@fontsource`.
+- Added brand gradient stop tokens (`brand.red`/`magenta`/`violet`) and
+  `brand.accent-from`/`accent-to` for the KIO avatar + send-glyph gradient.
+- `CLAUDE.md`: added an "implement Figma pixel-accurate" rule.
 
 ### Notes
 

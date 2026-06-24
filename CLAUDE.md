@@ -22,6 +22,22 @@ Read the doc that owns your task; don't restate its contents here.
 
 Working state (not architecture): `STATUS.md` session handoff · `TODO.md` backlog · `CHANGELOG.md`.
 
+## Implementing Figma designs — pixel-accurate, always
+
+When building or changing UI from a Figma node, **match the spec to the pixel.**
+
+1. **Pull exact values from the source, don't eyeball a screenshot.** Use the
+   Figma Desktop Bridge to read geometry, spacing, type (size/weight/line-height),
+   color, gradients, **effects**, and **node `visible` flags** for every element.
+2. **Tokenize, don't approximate.** If a Figma value conflicts with an existing
+   token, add/extend it in `tokens.json` and consume the token — never snap to a
+   "close enough" token or hard-code a one-off. Tokens stay the contract (DESIGN.md).
+3. **Don't silently drop or substitute.** Render every `visible` element in the
+   spec. If a deviation is genuinely unavoidable (e.g. it duplicates an app-shell
+   affordance), call it out explicitly and get a ruling — don't bury it.
+4. **Verify before claiming done.** Run the app and compare the rendered result to
+   the Figma frame; screenshot both.
+
 ## Commands
 
 | Command | What it does |
@@ -54,12 +70,16 @@ prefix) by Style Dictionary — **never hand-edit it.** Edit `tokens.json`, then
 
 ```
 src/
-  app/                # app shell — App.tsx + providers/ (theme, flags, data, LLM adapters — none built yet)
+  app/                # composition root (App.tsx)
+    layout/           # app shell — header, nav + context sidebars, layout framework
+    workspace/        # chat surfaces — ChatHome, ChatSidebar, SurfacedView, PromptBox
+    providers/        # theme, flags, data, LLM adapters — none built yet
   features/           # one self-contained slice per feature (none built yet);
                       #   a slice imports shared/* but reaches other slices only via their index.ts
   shared/
     ui/               # shadcn components on Base UI primitives — copied in; we own them
     lib/              # framework-agnostic helpers (cn(), …)
+    brand/            # brand graphics — logomark, KIO avatars, send glyph, user photo
     icons/            # first-party SVG icon components (Material motifs) — NOT @mui (DECISIONS D5)
   styles/
     tokens.css        # GENERATED from tokens/tokens.json — never hand-edit
