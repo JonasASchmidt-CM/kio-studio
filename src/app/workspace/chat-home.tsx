@@ -1,6 +1,7 @@
 import type { ChatMessage, ViewId } from '@/app/layout/framework'
 import { KioAvatar } from '@/shared/brand/kio-avatar'
 
+import { ChatActionButton } from './chat-action-button'
 import { ChatTranscript } from './chat-transcript'
 import { PromptBox } from './prompt-box'
 
@@ -60,15 +61,7 @@ export function ChatHome({
               <ul className="flex flex-wrap gap-[12px] items-center justify-center w-full" style={{ contain: 'layout' }}>
                 {SUGGESTIONS.map((label) => (
                   <li key={label}>
-                    <button
-                      type="button"
-                      onClick={() => onSend(label)}
-                      className="border border-solid border-[#d550f4] flex items-center justify-center px-[16px] py-[8px] rounded-[16px] focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none transition-all hover:bg-[#d550f4] hover:bg-opacity-15"
-                    >
-                      <p className="text-[14px] font-normal leading-[1.1] whitespace-nowrap text-center bg-clip-text text-transparent bg-[linear-gradient(133.65366819109892deg,rgb(213,80,244)_2.0327%,rgb(96,82,254)_98.789%)]">
-                        {label}
-                      </p>
-                    </button>
+                    <ChatActionButton label={label} onAction={() => onSend(label)} />
                   </li>
                 ))}
               </ul>
