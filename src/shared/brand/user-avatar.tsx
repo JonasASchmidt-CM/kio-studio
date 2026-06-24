@@ -10,7 +10,7 @@ import portraitUrl from './user-portrait.jpg'
  * container; place inside a `rounded-full overflow-hidden` box. Decorative by
  * default (empty alt) — the surrounding control names the user.
  *
- * Photo: Roman Manshin via Unsplash (free Unsplash License). Replace with the
+ * Photo: Tim Mossholder via Unsplash (free Unsplash License). Replace with the
  * real signed-in user's avatar when auth/profile data is wired up.
  */
 export function UserAvatar({ className, alt = '', ...props }: ComponentProps<'img'>) {
