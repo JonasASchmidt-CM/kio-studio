@@ -10,6 +10,19 @@ design** (no telemetry/analytics) and **WCAG 2.1 AA** are non-negotiable constra
 The stack is **provisional**: every choice in @DECISIONS.md is a designer pre-decision pending
 engineering review. Surface contradictions — don't silently "fix" a provisional decision.
 
+## Collaboration
+
+Challenge assumptions, intent, ideas, solutions, and decisions when you have a better approach — don't default to agreement. State the alternative clearly and briefly, then let the human decide.
+
+## UX Standards
+
+All design decisions, solutions, and feedback must respect:
+
+- **[Laws of UX](https://lawsofux.com/)** — apply relevant laws (Fitts, Hick, Jakob, Miller, etc.) when evaluating interactions, layouts, and component behaviour. Cite the specific law when it's load-bearing to the argument.
+- **[Nielsen's 10 Usability Heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/)** — use as a lens when reviewing or proposing UI. Flag violations proactively; don't wait to be asked.
+
+When a proposed solution violates either, say so explicitly and suggest a compliant alternative.
+
 ## Documentation
 
 Read the doc that owns your task; don't restate its contents here.
@@ -19,6 +32,9 @@ Read the doc that owns your task; don't restate its contents here.
 - @CODE_STYLE.md — lint/format rules, TS strictness, naming, commit conventions
 - @INTEGRATION.md — the Java CMS-engine contract, auth, LLM provider abstraction
 - @DECISIONS.md — stack decisions + rationale (`D#` decided/provisional, `O#` open/deferred to eng)
+- [KIO Studio (Confluence)](https://coremediagmbh.atlassian.net/wiki/spaces/prodman/pages/1269792774/KIO+Studio) — overall product context (parent)
+- [KIO Studio Design (Confluence)](https://coremediagmbh.atlassian.net/wiki/spaces/prodman/pages/1435336733/KIO+Studio+Design) — living product design document (child)
+- [Laws of UX](https://lawsofux.com/) — UX principles; apply when making design decisions or challenging solutions
 
 Working state (not architecture): `STATUS.md` session handoff · `TODO.md` backlog · `CHANGELOG.md`.
 
@@ -26,17 +42,11 @@ Working state (not architecture): `STATUS.md` session handoff · `TODO.md` backl
 
 When building or changing UI from a Figma node, **match the spec to the pixel.**
 
-1. **Pull exact values from the source, don't eyeball a screenshot.** Use the
-   Figma Desktop Bridge to read geometry, spacing, type (size/weight/line-height),
-   color, gradients, **effects**, and **node `visible` flags** for every element.
-2. **Tokenize, don't approximate.** If a Figma value conflicts with an existing
-   token, add/extend it in `tokens.json` and consume the token — never snap to a
-   "close enough" token or hard-code a one-off. Tokens stay the contract (DESIGN.md).
-3. **Don't silently drop or substitute.** Render every `visible` element in the
-   spec. If a deviation is genuinely unavoidable (e.g. it duplicates an app-shell
-   affordance), call it out explicitly and get a ruling — don't bury it.
-4. **Verify before claiming done.** Run the app and compare the rendered result to
-   the Figma frame; screenshot both.
+1. **Extract before you implement.** Use `figma_get_component_for_development_deep` (or the Figma Desktop Bridge) to pull exact geometry, spacing, type (size/weight/line-height), color, gradients, **effects**, and **node `visible` flags** for every element. List all values explicitly before touching code.
+2. **Design-systematize.** For each extracted value, check `tokens.json`: map to an existing token, propose a new one, or explicitly justify a one-off. Never hard-code a value that belongs in the token system — ask if unsure.
+3. **Tokenize, don't approximate.** Consume tokens — never snap to a "close enough" value. If a Figma value has no matching token, add or extend it in `tokens.json` first. Tokens stay the contract (DESIGN.md).
+4. **Don't silently drop or substitute.** Render every `visible` element in the spec. If a deviation is genuinely unavoidable (e.g. it duplicates an app-shell affordance), call it out explicitly and get a ruling — don't bury it.
+5. **Verify parity before claiming done.** Run `figma_check_design_parity`, screenshot both the implementation and the Figma frame, and report all deviations — including minor ones. Never self-correct silently.
 
 ## Commands
 

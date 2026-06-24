@@ -21,6 +21,8 @@
   --kio-color-neutral-700: oklch(0.371 0 0);
   --kio-color-neutral-800: oklch(0.269 0 0);
   --kio-color-neutral-900: oklch(0.205 0 0);
+  --kio-color-base-white: #ffffff; /** Pure white — on-gradient text, icon fills, separator tint base. */
+  --kio-color-base-black: #000000; /** Pure black. */
   --kio-color-semantic-background: oklch(1 0 0);
   --kio-color-semantic-foreground: oklch(0.145 0 0);
   --kio-color-severity-error: #dd342b; /** Error / danger / destructive. From the Figma notification badge. */

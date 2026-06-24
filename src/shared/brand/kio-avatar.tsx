@@ -16,34 +16,19 @@ import { useEffect, useRef, useState } from 'react'
  * the surrounding greeting carries the accessible meaning.
  */
 export function KioAvatar({ size = 80, ...props }: { size?: number } & SVGProps<SVGSVGElement>) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [eyeShift, setEyeShift] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
+      if (!svgRef.current) return
+      const rect = svgRef.current.getBoundingClientRect()
+      const angle = Math.atan2(e.clientY - (rect.top + rect.height / 2), e.clientX - (rect.left + rect.width / 2))
+      setEyeShift({ x: Math.cos(angle) * 1.5, y: Math.sin(angle) * 1.5 })
     }
-
     document.addEventListener('mousemove', handleMouseMove)
     return () => document.removeEventListener('mousemove', handleMouseMove)
   }, [])
-
-  const getEyeShift = () => {
-    if (!svgRef.current) return { x: 0, y: 0 }
-
-    const rect = svgRef.current.getBoundingClientRect()
-    const svgCenterX = rect.left + rect.width / 2
-    const svgCenterY = rect.top + rect.height / 2
-
-    const angle = Math.atan2(mousePos.y - svgCenterY, mousePos.x - svgCenterX)
-    const distance = 1.5
-    const shiftX = Math.cos(angle) * distance
-    const shiftY = Math.sin(angle) * distance
-
-    return { x: shiftX, y: shiftY }
-  }
-
-  const eyeShift = getEyeShift()
 
   return (
     <svg
