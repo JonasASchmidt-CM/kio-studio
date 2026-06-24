@@ -162,7 +162,7 @@ export function UserMenuButton({ name, online = false }: { name: string; online?
             {name}
           </span>
           <span className="relative size-8 shrink-0">
-            <span className="block size-8 overflow-hidden rounded-full bg-white/20">
+            <span className="block size-8 overflow-hidden rounded-full bg-white/20 ring-1 ring-white/50">
               <UserAvatar className="size-full" />
             </span>
             {online && (
