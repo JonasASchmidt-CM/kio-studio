@@ -13,7 +13,8 @@
     "typecheck": "tsc -b --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "figma:connect": "figma connect publish"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
