@@ -45,8 +45,8 @@ export function KioAvatar({ size = 80, ...props }: { size?: number } & SVGProps<
           y2="33.5974"
           gradientUnits="userSpaceOnUse"
         >
-          <stop style={{ stopColor: 'var(--kio-color-brand-magenta)' }} />
-          <stop offset="1" style={{ stopColor: 'var(--kio-color-brand-violet)' }} />
+          <stop style={{ stopColor: 'var(--kio-color-brand-accent-from)' }} />
+          <stop offset="1" style={{ stopColor: 'var(--kio-color-brand-accent-to)' }} />
         </linearGradient>
       </defs>
     </svg>

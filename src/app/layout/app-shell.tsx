@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 import { ChatHome } from '@/app/workspace/chat-home'
+import { ChatSidebar } from '@/app/workspace/chat-sidebar'
 import { SurfacedView as SurfacedViewPanel } from '@/app/workspace/surfaced-view'
 
 import { AppHeader } from './app-header'
-import { ChatRail } from './chat-rail'
 import { ContextSidebar } from './context-sidebar'
 import type { ChatMessage, ContextItem, NavItem, SurfacedView, ViewId } from './framework'
 import { PRIMARY_NAV, SECONDARY_NAV, VIEW_TITLES, uid } from './framework'
@@ -75,10 +75,11 @@ export function AppShell() {
           onSelect={handleNav}
         />
         {view && (
-          <ChatRail
+          <ChatSidebar
             messages={messages}
             onSend={handleSend}
-            onReturnHome={() => setView(null)}
+            onClearChat={() => setMessages([])}
+            onHistory={() => setView(null)}
             onOpenArtifact={(id) => surface(id, 'chat')}
           />
         )}

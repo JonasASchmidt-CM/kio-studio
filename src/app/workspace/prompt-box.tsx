@@ -15,11 +15,14 @@ export function PromptBox({
   placeholder = 'Ask KIO to create, find, or change something…',
   size = 'lg',
   showBookmark = false,
+  variant = 'card',
 }: {
   onSend: (text: string) => void
   placeholder?: string
   size?: 'lg' | 'sm'
   showBookmark?: boolean
+  /** 'card' — white, soft shadow (centred home). 'filled' — grey, bordered (floating sidebar). */
+  variant?: 'card' | 'filled'
 }) {
   const [value, setValue] = useState('')
   const [bookmarked, setBookmarked] = useState(false)
@@ -38,8 +41,9 @@ export function PromptBox({
         submit()
       }}
       className={cn(
-        'bg-card focus-within:ring-ring/40 flex items-center gap-2 rounded-xl shadow-sm focus-within:ring-2',
-        size === 'lg' ? 'py-2.5 pr-3.5 pl-4' : 'p-2 pl-3',
+        'focus-within:ring-ring/40 flex items-center gap-2 rounded-xl focus-within:ring-2',
+        variant === 'filled' ? 'bg-muted border-border border-2' : 'bg-card shadow-sm',
+        size === 'lg' ? 'py-3 pr-3.5 pl-4' : 'p-2 pl-3',
       )}
     >
       <textarea

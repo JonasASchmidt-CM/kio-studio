@@ -36,8 +36,8 @@ export function KioSendGlyph({ size = 18, ...props }: { size?: number } & SVGPro
           y2="0.977625"
           gradientUnits="userSpaceOnUse"
         >
-          <stop style={{ stopColor: 'var(--kio-color-brand-magenta)' }} />
-          <stop offset="1" style={{ stopColor: 'var(--kio-color-brand-violet)' }} />
+          <stop style={{ stopColor: 'var(--kio-color-brand-accent-from)' }} />
+          <stop offset="1" style={{ stopColor: 'var(--kio-color-brand-accent-to)' }} />
         </linearGradient>
       </defs>
     </svg>

@@ -8,6 +8,8 @@
   --kio-color-brand-violet: #5852ff; /** Gradient stop 3 (cool); also the primary action color. */
   --kio-color-brand-primary-hover: #4843db; /** Primary, hovered/active (darker violet). */
   --kio-color-brand-primary-foreground: #ffffff; /** Text/icon color on top of primary and on the brand gradient. */
+  --kio-color-brand-accent-from: #d550f4; /** AI accent gradient start (magenta) — KIO avatar smile + send glyph. From the Figma KIO designs. */
+  --kio-color-brand-accent-to: #6052fe; /** AI accent gradient end (violet) — pairs with accent-from. */
   --kio-color-neutral-50: oklch(0.985 0 0);
   --kio-color-neutral-100: oklch(0.97 0 0);
   --kio-color-neutral-200: oklch(0.922 0 0);
@@ -34,7 +36,8 @@
   --kio-radius-sm: 0.375rem;
   --kio-radius-md: 0.5rem;
   --kio-radius-lg: 0.625rem;
-  --kio-font-family-sans: 'Geist Variable', system-ui, sans-serif;
+  --kio-font-family-sans: 'Roboto', system-ui, sans-serif; /** Body / UI text — Roboto (KIO design system). */
+  --kio-font-family-heading: 'DM Sans Variable', system-ui, sans-serif; /** Display / headings — DM Sans (KIO design system). */
   --kio-font-family-mono: ui-monospace, 'Geist Mono', monospace;
   --kio-font-size-xs: 0.75rem;
   --kio-font-size-sm: 0.875rem;

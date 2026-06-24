@@ -53,7 +53,7 @@ export function ChatHome({
                   <KioAvatar size={80} className="relative z-10" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h1 className="text-[1.75rem] font-bold leading-tight">Good morning, Mira.</h1>
+                  <h1 className="font-heading text-[1.75rem] font-bold leading-tight">Good morning, Mira.</h1>
                   <p className="text-lg">I am KIO, your AI assistant. What can I do for you?</p>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export function ChatHome({
         )}
         <div className="sticky bottom-0 bg-[var(--kio-color-neutral-50)] pt-2 pb-6">
           <PromptBox onSend={onSend} placeholder="What can I do for you … ?" showBookmark />
-          <div className="text-muted-foreground mt-3 flex items-center justify-between gap-3 px-1 text-xs">
+          <div className="text-muted-foreground font-heading mt-3 flex items-center justify-between gap-3 px-1 text-xs">
             <span>AI makes mistakes, always check.</span>
             {started && (
               <button
