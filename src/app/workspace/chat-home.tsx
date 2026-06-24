@@ -41,10 +41,10 @@ export function ChatHome({
             <ChatTranscript messages={messages} onOpenArtifact={onOpenArtifact} />
           </div>
         ) : (
-          <div className="flex flex-1 flex-col justify-center py-10">
-            <div className="mx-auto flex w-full max-w-[548px] flex-col items-center gap-8 text-center">
-              <div className="flex flex-col items-center gap-6">
-                <div className="relative flex items-center justify-center">
+          <div className="flex flex-1 flex-col items-center justify-center gap-[32px] px-[60px]" style={{ contain: 'layout' }}>
+            <div className="flex flex-col gap-[24px] items-center w-full" style={{ contain: 'layout' }}>
+              <div className="flex flex-col gap-[24px] items-center" style={{ contain: 'layout' }}>
+                <div className="relative flex items-center justify-center size-[80px]">
                   {/* #ffffff corona — radial highlight lifting the avatar off the off-white canvas */}
                   <span
                     aria-hidden
@@ -52,22 +52,22 @@ export function ChatHome({
                   />
                   <KioAvatar size={80} className="relative z-10" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <h1 className="font-heading text-[1.75rem] font-bold leading-tight">Good morning, Mira.</h1>
-                  <p className="text-lg">I am KIO, your AI assistant. What can I do for you?</p>
+                <div className="flex flex-col gap-[8px] items-center w-full text-center" style={{ contain: 'layout' }}>
+                  <h1 className="text-[36px] font-bold leading-[1.3] font-heading bg-clip-text text-transparent bg-[linear-gradient(145.83423563990908deg,rgb(213,80,244)_2.0327%,rgb(96,82,254)_98.789%)]">Good morning, Mira.</h1>
+                  <p className="text-[20px] font-normal leading-[1.5] text-black">I am KIO, your AI assistant. What can I do for you?</p>
                 </div>
               </div>
-              <ul className="flex flex-wrap justify-center gap-3">
+              <ul className="flex flex-wrap gap-[12px] items-center justify-center w-full" style={{ contain: 'layout' }}>
                 {SUGGESTIONS.map((label) => (
                   <li key={label}>
                     <button
                       type="button"
                       onClick={() => onSend(label)}
-                      className="group focus-visible:ring-ring rounded-full bg-[image:var(--brand-gradient)] p-px transition-transform focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+                      className="border border-solid border-[#d550f4] flex items-center justify-center px-[16px] py-[8px] rounded-[16px] focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none transition-colors hover:bg-[rgba(213,80,244,0.08)]"
                     >
-                      <span className="bg-background group-hover:bg-muted block rounded-full px-3 py-1.5 text-sm transition-colors">
+                      <p className="text-[14px] font-normal leading-[1.1] whitespace-nowrap text-center bg-clip-text text-transparent bg-[linear-gradient(133.65366819109892deg,rgb(213,80,244)_2.0327%,rgb(96,82,254)_98.789%)]">
                         {label}
-                      </span>
+                      </p>
                     </button>
                   </li>
                 ))}

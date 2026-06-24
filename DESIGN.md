@@ -91,6 +91,30 @@ red→magenta→violet stops) so they follow the brand phase automatically.
 `UserAvatar` is a **bundled** photo — no runtime external request (privacy by
 design); swap it for the signed-in user's avatar when auth lands.
 
+## Chat blank slate (Figma 146:4545)
+
+The initial chat state presents a personalized greeting with action suggestions.
+Specifications are tokenized below; all values sourced from the Figma design.
+
+**Layout:**
+- Container gap: `gap-[32px]` (spacing.blank-slate-gap)
+- Container padding: `px-[60px]` (spacing.blank-slate-padding)
+- Avatar + text gap: `gap-[24px]` (spacing.avatar-gap)
+- Text (heading + subheading) gap: `gap-[8px]` (spacing.text-gap)
+- Action buttons gap: `gap-[12px]` (spacing.button-gap)
+
+**Typography:**
+- Heading: 36px (font.size.heading-blank-slate), DM Sans Bold, line-height 1.3 (font.line-height.heading)
+  - Gradient: linear-gradient(145.83423563990908deg, rgb(213, 80, 244) 2.0327%, rgb(96, 82, 254) 98.789%) (gradient.heading-blank-slate)
+- Subheading: 20px (font.size.body-lg), Roboto Regular, line-height 1.5 (font.line-height.normal), black text
+- Action buttons: 14px (font.size.button-text), Roboto Regular, line-height 1.1 (font.line-height.compact)
+  - Gradient text: linear-gradient(133.65366819109892deg, rgb(213, 80, 244) 2.0327%, rgb(96, 82, 254) 98.789%) (gradient.action-button-text)
+
+**Buttons:**
+- Border: 1px solid #d550f4 (color.brand.action-button-border)
+- Padding: `px-[16px] py-[8px]` (spacing.button-padding-x, spacing.button-padding-y)
+- Border radius: 16px (radius.button)
+
 ## Implementing from Figma
 
 Build to the pixel. Pull exact values via the Figma Desktop Bridge (geometry,
