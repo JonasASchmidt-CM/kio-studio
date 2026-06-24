@@ -106,6 +106,11 @@ export function HeaderSitePickerPanel({
           )
         })}
       </ul>
+      <div className="border-border border-t px-3 py-3">
+        <button type="button" className="border-primary text-primary hover:bg-primary/5 w-full rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.01em] transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+          All sites
+        </button>
+      </div>
     </div>
   )
 }
@@ -199,31 +204,36 @@ export function UserMenuButton({ name, online = false }: { name: string; online?
 
 export function HeaderNotificationsPanel({ count }: { count: number }) {
   const items = [
-    { id: 1, title: 'Spring campaign published', meta: '2m ago' },
-    { id: 2, title: 'Variant B is winning (+12%)', meta: '1h ago' },
-    { id: 3, title: 'New comment on Homepage', meta: '3h ago' },
+    { id: 1, title: 'Workspace "Campaign Q4" shared with you', meta: '2 minutes ago' },
+    { id: 2, title: 'System update successfully completed', meta: '1 hour ago' },
+    { id: 3, title: 'New comment on "Homepage Redesign"', meta: '5 hours ago' },
   ]
   return (
-    <div className="w-72">
-      <div className="border-border flex items-center justify-between border-b px-3 py-2">
-        <span className="text-sm font-semibold tracking-[0.01em]">Notifications</span>
+    <div className="w-60">
+      <div className="border-border flex items-start justify-between border-b px-4 py-3">
+        <div className="flex flex-col gap-0.5">
+          <span className="text-sm font-semibold tracking-[0.01em]">Notifications</span>
+          <span className="text-muted-foreground text-xs tracking-[0.01em]">From humans and agents.</span>
+        </div>
         {count > 0 && (
-          <span className="bg-destructive rounded-full px-1.5 text-xs font-bold text-white tracking-[0.01em]">{count}</span>
+          <span className="bg-destructive rounded-full px-1.5 text-xs font-bold text-primary-foreground tracking-[0.01em]">{count}</span>
         )}
       </div>
       <ul className="py-1">
         {items.map((n) => (
           <li key={n.id}>
-            <button
-              type="button"
-              className="hover:bg-muted flex w-full flex-col items-start gap-0.5 rounded-md px-3 py-2 text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            >
+            <button type="button" className="hover:bg-muted flex w-full flex-col items-start gap-0.5 rounded-md px-3 py-2 text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
               <span className="text-sm tracking-[0.01em]">{n.title}</span>
               <span className="text-muted-foreground text-xs tracking-[0.01em]">{n.meta}</span>
             </button>
           </li>
         ))}
       </ul>
+      <div className="border-border border-t px-3 py-3">
+        <button type="button" className="border-primary text-primary hover:bg-primary/5 w-full rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.01em] transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+          View all notifications
+        </button>
+      </div>
     </div>
   )
 }
@@ -232,28 +242,28 @@ export function HeaderUserMenuPanel({ name }: { name: string }) {
   const actions = ['Profile', 'Personalization settings', 'Log out']
   return (
     <div className="w-56" role="menu" aria-label={`Actions for ${name}`}>
-      <div className="border-border border-b px-3 py-2">
+      <div className="border-border border-b px-4 py-3">
         <div className="text-sm font-semibold tracking-[0.01em]">{name}</div>
         <div className="text-muted-foreground text-xs tracking-[0.01em]">user.n@coremedia.com</div>
       </div>
       <ul className="py-1">
         {actions.map((a) => (
           <li key={a}>
-            <button
-              type="button"
-              role="menuitem"
-              className="hover:bg-muted w-full rounded-md px-3 py-2 text-left text-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            >
+            <button type="button" role="menuitem" className="hover:bg-muted w-full rounded-md px-3 py-2 text-left text-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
               {a}
             </button>
           </li>
         ))}
       </ul>
+      <div className="border-border border-t px-3 py-3">
+        <button type="button" className="border-primary text-primary hover:bg-primary/5 w-full rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.01em] transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+          Account settings
+        </button>
+      </div>
     </div>
   )
 }
 
-/** Thin vertical divider between global-context groups. */
 function HeaderSeparator() {
   return <span aria-hidden className="h-6 w-px shrink-0 bg-white/20" />
 }
