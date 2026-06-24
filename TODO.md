@@ -16,8 +16,9 @@ Backlog for KIO Studio. Grouped by theme. Items reference `DECISIONS.md`
       (D4); until then, hand-edit `tokens.json`.
 - [ ] Replace the placeholder icon geometry with exact Material motifs exported
       from Figma (D5); expand the `src/shared/icons` set as needed.
-- [ ] Replace the default Geist font (pulled in by shadcn `base-nova`) with the
-      brand typeface; update `font.family` tokens and the favicon.
+- [x] Replace the default Geist font with the design-system typefaces — **DM Sans**
+      (headings) + **Roboto** (body); `font.family` tokens updated and loaded via
+      `@fontsource`. (Favicon tracked separately.)
 
 ## After transfer to the work machine
 
@@ -64,6 +65,15 @@ and around the brand-token / style-definition phase.
 - [ ] **React Compiler** — not enabled (Vite default). Evaluate turning it on for
       runtime perf, weighing its dev/build-time cost against the build-speed
       priority (DECISIONS.md priority #1).
+
+## Demo engine & playbooks
+
+- [ ] **Conversation mock engine and/or playbooks** — build a mock chat engine
+      and/or implement KIO's playbooks so they can be exercised inside this dev
+      repo (today the prompt box only plays a canned script; the mock engine was
+      intentionally skipped — DECISIONS.md O2). Stretch goal: integrate a real
+      LLM and agents (**Claude**) into the demo repo for live conversation paths.
+      Ties into the LLM provider abstraction (O2).
 
 ## Integration (BE)
 

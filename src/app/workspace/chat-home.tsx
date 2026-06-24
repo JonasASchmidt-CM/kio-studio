@@ -34,7 +34,7 @@ export function ChatHome({
   const started = messages.length > 0
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto bg-[var(--kio-color-neutral-50)]">
+    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto bg-[var(--kio-color-neutral-50)] shadow-[inset_0_4px_12px_rgba(0,0,0,0.24)]">
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6">
         {started ? (
           <div className="flex flex-1 flex-col py-8">

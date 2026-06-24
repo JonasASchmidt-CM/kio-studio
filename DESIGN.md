@@ -40,18 +40,20 @@ Figma Variables ──(Tokens Studio, later)──▶ tokens/tokens.json  (W3C D
 
 ## Token set (current seed)
 
-> ⚠️ **Placeholder values.** Real CoreMedia brand tokens land in a dedicated
-> phase (see TODO.md). Colors are authored in **oklch** to match shadcn's
-> native color space.
+> ⚠️ **Placeholder colors.** Real CoreMedia brand colors land in a dedicated
+> phase (see TODO.md); neutrals are authored in **oklch** to match shadcn's
+> native color space. **Fonts are real** now — DM Sans (headings) + Roboto
+> (body), the KIO design-system typefaces.
 
 | Group              | Tokens                                                     |
 | ------------------ | ---------------------------------------------------------- |
-| `color.brand`      | `primary`, `primary-hover`, `primary-foreground`           |
+| `color.brand`      | `red`/`magenta`/`violet` (gradient stops), `primary`, `primary-hover`, `primary-foreground`, `accent-from`/`accent-to` (avatar + send glyph) |
 | `color.neutral`    | `50`–`900` ramp                                            |
 | `color.semantic`   | `background`, `foreground`, `border` (alias → neutral.200) |
+| `color.severity`   | `error`, `success`, `warning`, `neutral`                   |
 | `spacing`          | `1`–`8` (4px base)                                         |
 | `radius`           | `sm`, `md`, `lg`                                           |
-| `font.family`      | `sans`, `mono`                                             |
+| `font.family`      | `sans` (Roboto), `heading` (DM Sans), `mono`               |
 | `font.size`        | `xs`–`2xl`                                                 |
 | `font.weight`      | `regular`, `medium`, `semibold`, `bold`                    |
 | `font.line-height` | `tight`, `normal`, `relaxed`                               |
@@ -59,9 +61,11 @@ Figma Variables ──(Tokens Studio, later)──▶ tokens/tokens.json  (W3C D
 ### Theme mapping status
 
 The **light theme core** (background, foreground, primary, neutrals, border,
-radius, font family) is mapped onto tokens. Still on raw values pending the
-brand phase: `card`, `popover`, `destructive`, `chart-*`, `sidebar-*`, and the
-**entire `.dark` theme block** in `src/index.css`.
+radius, fonts) is mapped onto tokens: `--font-sans` → Roboto, `--font-heading`
+→ DM Sans, and the brand gradient (`--brand-gradient`) is composed from the
+`color.brand` stops. Still on raw values pending the brand phase: `card`,
+`popover`, `destructive`, `chart-*`, `sidebar-*`, and the **entire `.dark` theme
+block** in `src/index.css`.
 
 ## Adding / changing tokens
 
@@ -76,3 +80,20 @@ Material Design motifs, hand-authored as our own SVG React components in
 `src/shared/icons` (DECISIONS.md D5). Decorative by default (`aria-hidden`);
 give meaningful icons an accessible label. Use `currentColor` so icons theme
 from text color.
+
+## Brand marks
+
+Gradient brand graphics live in `src/shared/brand` (kept out of the flat icon
+set): `KioLogoMark`, `KioAvatar` (the smiley + white corona on the centred home),
+`KioSparkleMark` (the sparkle smiley in the floating sidebar), and `KioSendGlyph`.
+Their gradient stops reference brand tokens (`accent-from/to`, or the
+red→magenta→violet stops) so they follow the brand phase automatically.
+`UserAvatar` is a **bundled** photo — no runtime external request (privacy by
+design); swap it for the signed-in user's avatar when auth lands.
+
+## Implementing from Figma
+
+Build to the pixel. Pull exact values via the Figma Desktop Bridge (geometry,
+type, color, effects, and node `visible` flags); when a Figma value conflicts
+with a token, **tokenize the Figma value** rather than approximating. See the
+rule in `CLAUDE.md`.

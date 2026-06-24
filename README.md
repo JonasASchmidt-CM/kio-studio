@@ -3,9 +3,10 @@
 An **AI-first standalone workspace** that acts as a frontend client for the
 CoreMedia CMS engine (distribution, A/B testing, variant segmentation).
 
-> **Status:** first runnable scaffold. The stack is **proposed and provisional**
-> — see [`DECISIONS.md`](./DECISIONS.md). Engineering, PM, and POs are expected
-> to revisit every decision.
+> **Status:** app shell + chat surfaces, themed pixel-faithfully from the Figma
+> designs. The stack is **proposed and provisional** — see
+> [`DECISIONS.md`](./DECISIONS.md). Engineering, PM, and POs are expected to
+> revisit every decision.
 
 ## What it is
 
@@ -49,9 +50,9 @@ the themed UI always reflects `tokens/tokens.json`.
 
 ```
 src/
-  app/         App shell + cross-cutting providers (composition root)
+  app/         Composition root — layout/ (shell), workspace/ (chat), providers/
   features/    Self-contained feature slices (modularity; room for flags)
-  shared/      ui/ (shadcn on Base UI), lib/, icons/ (self-owned SVGs)
+  shared/      ui/ (shadcn on Base UI), lib/, brand/ (marks), icons/ (self-owned SVGs)
   styles/      globals (index.css) + generated tokens.css
 tokens/        tokens.json — W3C DTCG, Git-canonical source of truth
 ```

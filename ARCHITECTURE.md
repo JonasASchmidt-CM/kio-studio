@@ -22,14 +22,29 @@ Feature-sliced (DECISIONS.md O3):
 
 ```
 src/
-  app/        Composition root (App.tsx) + providers/ (theme, flags, data, LLM)
-  features/   One folder per feature slice; public surface via index.ts
-  shared/     ui/ (design-system components), lib/ (utils), icons/ (SVGs), hooks/
-  styles/     index.css (theme) + generated tokens.css
+  app/         Composition root (App.tsx)
+    layout/    App shell — header, nav + context sidebars, layout framework
+    workspace/ Chat surfaces — ChatHome, ChatSidebar, SurfacedView, PromptBox
+    providers/ Theme, flags, data, LLM adapters — none built yet
+  features/    One folder per feature slice; public surface via index.ts
+  shared/      ui/ (design-system components), lib/ (utils), brand/ (logo/avatars), icons/ (SVGs), hooks/
+  styles/      index.css (theme) + generated tokens.css
 ```
 
 Import rule: features may use `@/shared/*` but not each other's internals
 (go through a feature's `index.ts`).
+
+## Application shell & chat (built)
+
+`AppShell` (`app/layout/app-shell.tsx`) composes the layout: a sticky
+`AppHeader`, a collapsible `NavSidebar`, the main workspace, and a contextual
+sidebar. State is local (no router yet); `app/layout/framework.ts` holds the
+shared data model (nav items, view ids, chat messages).
+
+The load-bearing interaction: by default the chat is centred in the workspace
+(`ChatHome`). When a UI is surfaced — by a nav click or conversationally by KIO —
+the main area shows that `SurfacedView` and the chat relocates into the floating
+`ChatSidebar` ("KIO Copilot") panel; closing the view returns the chat to centre.
 
 ## Component primitives — RESOLVED, worth noting
 

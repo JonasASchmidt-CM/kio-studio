@@ -70,12 +70,16 @@ prefix) by Style Dictionary — **never hand-edit it.** Edit `tokens.json`, then
 
 ```
 src/
-  app/                # app shell — App.tsx + providers/ (theme, flags, data, LLM adapters — none built yet)
+  app/                # composition root (App.tsx)
+    layout/           # app shell — header, nav + context sidebars, layout framework
+    workspace/        # chat surfaces — ChatHome, ChatSidebar, SurfacedView, PromptBox
+    providers/        # theme, flags, data, LLM adapters — none built yet
   features/           # one self-contained slice per feature (none built yet);
                       #   a slice imports shared/* but reaches other slices only via their index.ts
   shared/
     ui/               # shadcn components on Base UI primitives — copied in; we own them
     lib/              # framework-agnostic helpers (cn(), …)
+    brand/            # brand graphics — logomark, KIO avatars, send glyph, user photo
     icons/            # first-party SVG icon components (Material motifs) — NOT @mui (DECISIONS D5)
   styles/
     tokens.css        # GENERATED from tokens/tokens.json — never hand-edit

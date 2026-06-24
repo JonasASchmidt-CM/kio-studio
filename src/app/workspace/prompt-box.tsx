@@ -42,7 +42,7 @@ export function PromptBox({
       }}
       className={cn(
         'focus-within:ring-ring/40 flex items-center gap-2 rounded-xl focus-within:ring-2',
-        variant === 'filled' ? 'bg-muted border-border border-2' : 'bg-card shadow-sm',
+        variant === 'filled' ? 'bg-muted border-border border-2' : 'bg-card',
         size === 'lg' ? 'py-3 pr-3.5 pl-4' : 'p-2 pl-3',
       )}
     >
