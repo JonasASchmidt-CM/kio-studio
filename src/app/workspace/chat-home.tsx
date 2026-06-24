@@ -63,7 +63,7 @@ export function ChatHome({
                     <button
                       type="button"
                       onClick={() => onSend(label)}
-                      className="border border-solid border-[#d550f4] flex items-center justify-center px-[16px] py-[8px] rounded-[16px] focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none transition-colors hover:bg-[rgba(213,80,244,0.08)]"
+                      className="border border-solid border-[#d550f4] flex items-center justify-center px-[16px] py-[8px] rounded-[16px] focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none transition-all hover:bg-[#d550f4] hover:bg-opacity-15"
                     >
                       <p className="text-[14px] font-normal leading-[1.1] whitespace-nowrap text-center bg-clip-text text-transparent bg-[linear-gradient(133.65366819109892deg,rgb(213,80,244)_2.0327%,rgb(96,82,254)_98.789%)]">
                         {label}
