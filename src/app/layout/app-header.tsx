@@ -64,6 +64,52 @@ const SITES: Site[] = [
   { id: 'fr', label: 'CoreMedia.fr', locale: 'FR-FR' },
 ]
 
+
+/** Dropdown panel content for the site/locale picker. */
+export function HeaderSitePickerPanel({
+  sites,
+  activeSiteId,
+  onSelect,
+}: {
+  sites: { id: string; label: string; locale: string }[]
+  activeSiteId: string
+  onSelect: (id: string) => void
+}) {
+  return (
+    <div className="w-72">
+      <div className="border-border border-b px-3 py-2">
+        <div className="text-sm font-semibold tracking-[0.01em]">Preferred site</div>
+        <div className="text-muted-foreground text-xs tracking-[0.01em]">The site &amp; locale KIO works in by default.</div>
+      </div>
+      <ul className="py-1" role="listbox" aria-label="Preferred site">
+        {sites.map((s) => {
+          const active = s.id === activeSiteId
+          return (
+            <li key={s.id}>
+              <button
+                type="button"
+                role="option"
+                aria-selected={active}
+                onClick={() => onSelect(s.id)}
+                className={cn(
+                  'flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left text-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
+                  active ? 'bg-muted font-medium' : 'hover:bg-muted',
+                )}
+              >
+                <span className="tracking-[0.01em]">
+                  {s.label}
+                  <span className="text-muted-foreground"> · {s.locale}</span>
+                </span>
+                {active && <span className="text-primary text-xs font-semibold tracking-[0.01em]">Current</span>}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 /** Preferred-site / locale context — the global site KIO works in by default. */
 export function SiteLocaleSelector() {
   const [open, setOpen] = useState(false)
@@ -76,7 +122,7 @@ export function SiteLocaleSelector() {
       onOpenChange={setOpen}
       ariaLabel="Preferred site and locale"
       trigger={
-        <button type="button" className={headerControl('gap-1 px-1.5 py-1 hover:text-black')}>
+        <button type="button" className={headerControl('gap-1 px-1.5 py-1 hover:text-foreground')}>
           <span className="text-sm font-semibold whitespace-nowrap tracking-[0.01em]">
             {site.label} · {site.locale}
           </span>
@@ -84,40 +130,11 @@ export function SiteLocaleSelector() {
         </button>
       }
     >
-      <div className="w-72">
-        <div className="border-border border-b px-3 py-2">
-          <div className="text-sm font-semibold tracking-[0.01em]">Preferred site</div>
-          <div className="text-muted-foreground text-xs tracking-[0.01em]">The site &amp; locale KIO works in by default.</div>
-        </div>
-        <ul className="py-1" role="listbox" aria-label="Preferred site">
-          {SITES.map((s) => {
-            const active = s.id === siteId
-            return (
-              <li key={s.id}>
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={active}
-                  onClick={() => {
-                    setSiteId(s.id)
-                    setOpen(false)
-                  }}
-                  className={cn(
-                    'flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left text-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
-                    active ? 'bg-muted font-medium' : 'hover:bg-muted',
-                  )}
-                >
-                  <span className="tracking-[0.01em]">
-                    {s.label}
-                    <span className="text-muted-foreground"> · {s.locale}</span>
-                  </span>
-                  {active && <span className="text-primary text-xs font-semibold tracking-[0.01em]">Current</span>}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+      <HeaderSitePickerPanel
+        sites={SITES}
+        activeSiteId={siteId}
+        onSelect={(id) => { setSiteId(id); setOpen(false) }}
+      />
     </Popover>
   )
 }
@@ -134,11 +151,11 @@ export function NotificationButton({ count = 0 }: { count?: number }) {
           aria-label={hasUnread ? `Notifications, ${count} unread` : 'Notifications'}
           className={headerControl('group relative size-6')}
         >
-          <NotificationsIcon size={24} className="transition-colors group-hover:text-black" />
+          <NotificationsIcon size={24} className="transition-colors group-hover:text-foreground" />
           {hasUnread && (
             <span
               aria-hidden
-              className="bg-destructive absolute -top-1.5 left-3.5 min-w-4 rounded-full px-1 py-px text-center text-xs leading-none font-bold text-white shadow-sm tracking-[0.01em]"
+              className="bg-destructive absolute -top-1.5 left-3.5 min-w-4 rounded-full px-1 py-px text-center text-xs leading-none font-bold text-primary-foreground shadow-sm tracking-[0.01em]"
             >
               {count > 99 ? '99+' : count}
             </span>
@@ -146,7 +163,7 @@ export function NotificationButton({ count = 0 }: { count?: number }) {
         </button>
       }
     >
-      <NotificationsMenu count={count} />
+      <HeaderNotificationsPanel count={count} />
     </Popover>
   )
 }
@@ -158,29 +175,29 @@ export function UserMenuButton({ name, online = false }: { name: string; online?
       ariaLabel={`User menu for ${name}`}
       trigger={
         <button type="button" aria-label={`User menu for ${name}`} className={headerControl('group gap-2')}>
-          <span className="text-sm font-semibold whitespace-nowrap tracking-[0.01em] transition-colors group-hover:text-black">
+          <span className="text-sm font-semibold whitespace-nowrap tracking-[0.01em] transition-colors group-hover:text-foreground">
             {name}
           </span>
           <span className="relative size-8 shrink-0">
-            <span className="block size-8 overflow-hidden rounded-full bg-white/20 ring-1 ring-white/50">
+            <span className="block size-8 overflow-hidden rounded-full bg-primary-foreground/20 ring-1 ring-primary-foreground/50">
               <UserAvatar className="size-full" />
             </span>
             {online && (
               <span
                 aria-hidden
-                className="bg-success absolute bottom-0 left-0 size-[9px] rounded-full ring-1 ring-white"
+                className="bg-success absolute bottom-0 left-0 size-[9px] rounded-full ring-1 ring-primary-foreground"
               />
             )}
           </span>
         </button>
       }
     >
-      <UserMenu name={name} />
+      <HeaderUserMenuPanel name={name} />
     </Popover>
   )
 }
 
-function NotificationsMenu({ count }: { count: number }) {
+export function HeaderNotificationsPanel({ count }: { count: number }) {
   const items = [
     { id: 1, title: 'Spring campaign published', meta: '2m ago' },
     { id: 2, title: 'Variant B is winning (+12%)', meta: '1h ago' },
@@ -211,7 +228,7 @@ function NotificationsMenu({ count }: { count: number }) {
   )
 }
 
-function UserMenu({ name }: { name: string }) {
+export function HeaderUserMenuPanel({ name }: { name: string }) {
   const actions = ['Profile', 'Personalization settings', 'Log out']
   return (
     <div className="w-56" role="menu" aria-label={`Actions for ${name}`}>
