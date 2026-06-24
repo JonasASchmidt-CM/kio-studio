@@ -77,7 +77,7 @@ export function SiteLocaleSelector() {
       ariaLabel="Preferred site and locale"
       trigger={
         <button type="button" className={headerControl('gap-1 px-1.5 py-1 hover:text-black')}>
-          <span className="text-sm font-semibold whitespace-nowrap">
+          <span className="text-sm font-semibold whitespace-nowrap tracking-[0.01em]">
             {site.label} · {site.locale}
           </span>
           <ChevronDownIcon size={20} className="shrink-0" />
@@ -86,8 +86,8 @@ export function SiteLocaleSelector() {
     >
       <div className="w-72">
         <div className="border-border border-b px-3 py-2">
-          <div className="text-sm font-semibold">Preferred site</div>
-          <div className="text-muted-foreground text-xs">The site &amp; locale KIO works in by default.</div>
+          <div className="text-sm font-semibold tracking-[0.01em]">Preferred site</div>
+          <div className="text-muted-foreground text-xs tracking-[0.01em]">The site &amp; locale KIO works in by default.</div>
         </div>
         <ul className="py-1" role="listbox" aria-label="Preferred site">
           {SITES.map((s) => {
@@ -107,11 +107,11 @@ export function SiteLocaleSelector() {
                     active ? 'bg-muted font-medium' : 'hover:bg-muted',
                   )}
                 >
-                  <span>
+                  <span className="tracking-[0.01em]">
                     {s.label}
                     <span className="text-muted-foreground"> · {s.locale}</span>
                   </span>
-                  {active && <span className="text-primary text-xs font-semibold">Current</span>}
+                  {active && <span className="text-primary text-xs font-semibold tracking-[0.01em]">Current</span>}
                 </button>
               </li>
             )
@@ -138,7 +138,7 @@ export function NotificationButton({ count = 0 }: { count?: number }) {
           {hasUnread && (
             <span
               aria-hidden
-              className="bg-destructive absolute -top-1.5 left-3.5 min-w-4 rounded-full px-1 py-px text-center text-xs leading-none font-bold text-white shadow-sm"
+              className="bg-destructive absolute -top-1.5 left-3.5 min-w-4 rounded-full px-1 py-px text-center text-xs leading-none font-bold text-white shadow-sm tracking-[0.01em]"
             >
               {count > 99 ? '99+' : count}
             </span>
@@ -158,7 +158,7 @@ export function UserMenuButton({ name, online = false }: { name: string; online?
       ariaLabel={`User menu for ${name}`}
       trigger={
         <button type="button" aria-label={`User menu for ${name}`} className={headerControl('group gap-2')}>
-          <span className="text-sm font-semibold whitespace-nowrap transition-colors group-hover:text-black">
+          <span className="text-sm font-semibold whitespace-nowrap tracking-[0.01em] transition-colors group-hover:text-black">
             {name}
           </span>
           <span className="relative size-8 shrink-0">
@@ -189,9 +189,9 @@ function NotificationsMenu({ count }: { count: number }) {
   return (
     <div className="w-72">
       <div className="border-border flex items-center justify-between border-b px-3 py-2">
-        <span className="text-sm font-semibold">Notifications</span>
+        <span className="text-sm font-semibold tracking-[0.01em]">Notifications</span>
         {count > 0 && (
-          <span className="bg-destructive rounded-full px-1.5 text-xs font-bold text-white">{count}</span>
+          <span className="bg-destructive rounded-full px-1.5 text-xs font-bold text-white tracking-[0.01em]">{count}</span>
         )}
       </div>
       <ul className="py-1">
@@ -201,8 +201,8 @@ function NotificationsMenu({ count }: { count: number }) {
               type="button"
               className="hover:bg-muted flex w-full flex-col items-start gap-0.5 rounded-md px-3 py-2 text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
-              <span className="text-sm">{n.title}</span>
-              <span className="text-muted-foreground text-xs">{n.meta}</span>
+              <span className="text-sm tracking-[0.01em]">{n.title}</span>
+              <span className="text-muted-foreground text-xs tracking-[0.01em]">{n.meta}</span>
             </button>
           </li>
         ))}
@@ -216,8 +216,8 @@ function UserMenu({ name }: { name: string }) {
   return (
     <div className="w-56" role="menu" aria-label={`Actions for ${name}`}>
       <div className="border-border border-b px-3 py-2">
-        <div className="text-sm font-semibold">{name}</div>
-        <div className="text-muted-foreground text-xs">user.n@coremedia.com</div>
+        <div className="text-sm font-semibold tracking-[0.01em]">{name}</div>
+        <div className="text-muted-foreground text-xs tracking-[0.01em]">user.n@coremedia.com</div>
       </div>
       <ul className="py-1">
         {actions.map((a) => (

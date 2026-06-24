@@ -3,10 +3,7 @@
 An **AI-first standalone workspace** that acts as a frontend client for the
 CoreMedia CMS engine (distribution, A/B testing, variant segmentation).
 
-> **Status:** app shell + chat surfaces, themed pixel-faithfully from the Figma
-> designs. The stack is **proposed and provisional** — see
-> [`DECISIONS.md`](./DECISIONS.md). Engineering, PM, and POs are expected to
-> revisit every decision.
+> **Status:** App shell + chat surfaces (blank slate with interactive avatar, action buttons, prompt box), fully themed to pixel-perfect Figma specs. Design tokens systematized in Git. The stack is **proposed and provisional** — see [`DECISIONS.md`](./DECISIONS.md). Engineering, PM, and POs are expected to revisit every decision.
 
 ## What it is
 

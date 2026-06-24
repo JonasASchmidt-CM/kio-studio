@@ -7,7 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+### [Latest Session] 2026-06-24
+
+#### Added
+- **KIO avatar interactive eyes**: Subtly follow mouse cursor (1.5px movement, no pupils, gradient eyes only)
+- **Chat blank slate pixel-perfect compliance** (Figma 146:4545): Exact spacing, typography, and gradient specifications
+- **Comprehensive design tokens** for blank slate: `font.size.heading-blank-slate` (36px), `body-lg` (20px), `button-text` (14px); `font.line-height.compact` (1.1), `heading` (1.3); spacing tokens for gaps and padding; `color.brand.action-button-border`; gradient specifications
+- **Button hover effect**: Subtle magenta background (8% opacity) with smooth color transition
+- **Header text letter spacing**: 1% (0.01em) global tracking on small text
+- **CLS prevention**: CSS containment (`contain: layout`) on blank slate containers, explicit avatar sizing
+- **DESIGN.md blank slate section**: Complete specifications and token references for chat blank slate implementation
+
+#### Changed
+- `DESIGN.md`: Added detailed "Chat blank slate (Figma 146:4545)" section with layout, typography, and button specifications
+- `STATUS.md`: Updated current state and documented latest session work
+- `tokens/tokens.json`: Expanded with 20+ new tokens for blank slate (sizes, line heights, spacing, border radius, colors, gradients)
+- Action button styling: Corrected padding to exact Figma spec (`px-[16px] py-[8px]`), gradient angle precision, line height adjustment
+
+#### Improved
+- Blank slate layout containment for improved CLS metrics
+- Hover interaction feedback on action buttons
+
+### Initial Release Features
+
+#### Added
 
 - Initial scaffold: Vite + React + TypeScript (strict) application.
 - Quality tooling: ESLint 9 (flat config) with `jsx-a11y` for WCAG 2.1 AA

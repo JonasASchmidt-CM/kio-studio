@@ -1,4 +1,5 @@
 import type { SVGProps } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /**
  * KIO avatar — the friendly "smiley" face KIO presents on the chat blank slate.
@@ -15,8 +16,38 @@ import type { SVGProps } from 'react'
  * the surrounding greeting carries the accessible meaning.
  */
 export function KioAvatar({ size = 80, ...props }: { size?: number } & SVGProps<SVGSVGElement>) {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const svgRef = useRef<SVGSVGElement>(null)
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    return () => document.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  const getEyeShift = () => {
+    if (!svgRef.current) return { x: 0, y: 0 }
+
+    const rect = svgRef.current.getBoundingClientRect()
+    const svgCenterX = rect.left + rect.width / 2
+    const svgCenterY = rect.top + rect.height / 2
+
+    const angle = Math.atan2(mousePos.y - svgCenterY, mousePos.x - svgCenterX)
+    const distance = 1.5
+    const shiftX = Math.cos(angle) * distance
+    const shiftY = Math.sin(angle) * distance
+
+    return { x: shiftX, y: shiftY }
+  }
+
+  const eyeShift = getEyeShift()
+
   return (
     <svg
+      ref={svgRef}
       width={size}
       height={size}
       viewBox="0 0 80 80"
@@ -33,9 +64,15 @@ export function KioAvatar({ size = 80, ...props }: { size?: number } & SVGProps<
         />
       </g>
       <path
-        d="M7.5948 55.7818C9.55101 54.5245 12.1561 55.0911 13.4133 57.0473C19.1902 66.0355 29.1187 71.5784 40.0005 71.5784C50.6506 71.5784 60.3945 66.2709 66.2284 57.5938C67.5258 55.664 70.142 55.1513 72.0718 56.4488C74.0016 57.7463 74.5142 60.3625 73.2168 62.2923C65.8346 73.2723 53.4845 79.9994 40.0005 79.9994C26.2227 79.9994 13.6397 72.9746 6.32929 61.6004C5.072 59.6442 5.63859 57.0391 7.5948 55.7818ZM50.8275 27.0671C53.1529 27.0671 55.0381 28.9522 55.0381 31.2776V35.8301C55.0381 38.1555 53.1529 40.0406 50.8275 40.0406C48.5021 40.0406 46.617 38.1555 46.617 35.8301V31.2776C46.617 28.9522 48.5021 27.0671 50.8275 27.0671ZM29.1734 26.616C31.4988 26.616 33.3839 28.5011 33.3839 30.8265V35.8301C33.3839 38.1555 31.4988 40.0406 29.1734 40.0406C26.848 40.0406 24.9629 38.1555 24.9629 35.8301V30.8265C24.9629 28.5011 26.848 26.616 29.1734 26.616Z"
+        d="M7.5948 55.7818C9.55101 54.5245 12.1561 55.0911 13.4133 57.0473C19.1902 66.0355 29.1187 71.5784 40.0005 71.5784C50.6506 71.5784 60.3945 66.2709 66.2284 57.5938C67.5258 55.664 70.142 55.1513 72.0718 56.4488C74.0016 57.7463 74.5142 60.3625 73.2168 62.2923C65.8346 73.2723 53.4845 79.9994 40.0005 79.9994C26.2227 79.9994 13.6397 72.9746 6.32929 61.6004C5.072 59.6442 5.63859 57.0391 7.5948 55.7818Z"
         fill="url(#kio-avatar-gradient)"
       />
+      <g transform={`translate(${eyeShift.x}, ${eyeShift.y})`}>
+        <path
+          d="M50.8275 27.0671C53.1529 27.0671 55.0381 28.9522 55.0381 31.2776V35.8301C55.0381 38.1555 53.1529 40.0406 50.8275 40.0406C48.5021 40.0406 46.617 38.1555 46.617 35.8301V31.2776C46.617 28.9522 48.5021 27.0671 50.8275 27.0671ZM29.1734 26.616C31.4988 26.616 33.3839 28.5011 33.3839 30.8265V35.8301C33.3839 38.1555 31.4988 40.0406 29.1734 40.0406C26.848 40.0406 24.9629 38.1555 24.9629 35.8301V30.8265C24.9629 28.5011 26.848 26.616 29.1734 26.616Z"
+          fill="url(#kio-avatar-gradient)"
+        />
+      </g>
       <defs>
         <linearGradient
           id="kio-avatar-gradient"

@@ -3,9 +3,9 @@
 Session handoff — current state of KIO Studio and what's next. **Keep this
 updated** at the end of each working session.
 
-_Last updated: 2026-06-24_
+_Last updated: 2026-06-24 (latest session: comprehensive Figma spec compliance + design tokens)_
 
-## Current state: ✅ App shell + chat surfaces, themed from the Figma designs
+## Current state: ✅ App shell + chat surfaces, pixel-perfect to Figma + design tokens systematized
 
 `npm install && npm run dev` works. The app renders the full layout shell and the
 KIO chat experience, built pixel-faithfully from the Figma "Design Concept" and
@@ -37,22 +37,29 @@ KIO chat experience, built pixel-faithfully from the Figma "Design Concept" and
 - **Quality gates:** ESLint 9 + `jsx-a11y`, Prettier, strict typecheck, build —
   all green.
 
+### Latest session work (2026-06-24)
+
+**Completed:**
+- ✅ **KIO avatar interactive**: Eyes follow mouse cursor subtly (1.5px movement)
+- ✅ **Chat blank slate pixel-perfect** (Figma 146:4545): Exact spacing (32px gaps, 60px padding), typography (36px heading, 20px subheading, 14px buttons), gradients (145.83° and 133.65° angles with precise RGB stops)
+- ✅ **Design tokens systematized**: Added 20+ tokens for blank slate (font sizes, line heights, spacing, border radius, colors, gradients) to `tokens/tokens.json`
+- ✅ **DESIGN.md documented**: Blank slate specifications with token references for future implementations
+- ✅ **Header letter spacing**: 1% (0.01em) global tracking applied to all small text
+- ✅ **Action button hover effect**: Subtle magenta background on hover (8% opacity, smooth transition)
+- ✅ **CLS prevention**: CSS containment + explicit sizing to prevent content jumping on reload
+
 ### Key facts for the next session
 
-- **Implement Figma to the pixel** — see the rule in CLAUDE.md; tokenize
-  conflicting values rather than approximating.
+- **Implement Figma to the pixel** — rule: tokenize conflicting values rather than approximating (see CLAUDE.md).
 - DECISIONS.md entries are **provisional** (designer pre-decisions).
-- Colors in `tokens.json` are still **placeholders** pending the CoreMedia brand
-  phase; fonts are now the real design-system typefaces.
+- Colors in `tokens.json` are still **placeholders** pending the CoreMedia brand phase; fonts are now real (DM Sans, Roboto).
+- Design tokens are **Git-canonical** (DESIGN.md D4) — `tokens.json` is the single source of truth, built to CSS via Style Dictionary.
 - Run project tools via `npm run <script>` (a shell hook mangles bare `npx`).
-- Work lives on branch `feat/chat-blank-slate` (pushed); `main` not yet
-  fast-forwarded.
+- Work lives on branch `feat/chat-blank-slate`; ready for PR + `main` fast-forward.
 
 ### Known gaps / deviations
 
-- The concept chat-home's top-right **feedback-hub icon** is omitted — its Figma
-  instance is an unresolved library reference that exports no geometry (it
-  renders blank in Figma too).
+- The concept chat-home's top-right **feedback-hub icon** is omitted — its Figma instance is an unresolved library reference that exports no geometry (it renders blank in Figma too).
 
 ## Next up
 
