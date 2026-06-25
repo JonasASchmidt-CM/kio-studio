@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/w2XyYK1mhVb5T7JuzXUAmQ/KIO-Studio---Design-System?node-id=216-173
+// url=https://www.figma.com/design/w2XyYK1mhVb5T7JuzXUAmQ/KIO-Studio---Design-System?node-id=234-171
 // source=src/app/layout/app-header.tsx
 // component=HeaderUserMenuPanel
 import figma from 'figma'
