@@ -4,16 +4,14 @@
 @import '@fontsource-variable/dm-sans';
 @import '@fontsource/roboto/400.css';
 @import '@fontsource/roboto/500.css';
-/* KIO design tokens (generated from tokens/tokens.json by Style Dictionary).
-   Defines the `--kio-*` custom properties referenced below. */
 @import './styles/tokens.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Typography sourced from our tokens (DECISIONS.md D4). */
   --font-heading: var(--kio-font-family-heading);
   --font-sans: var(--kio-font-family-sans);
+  --shadow-card: var(--kio-shadow-card);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -58,56 +56,54 @@
 }
 
 /*
- * Light theme. Core semantic vars are mapped onto KIO tokens (`--kio-*`) so the
- * whole UI themes from tokens/tokens.json. Vars still on raw oklch values
- * (card, popover, destructive, charts, sidebar, and the .dark block) are
- * intentionally left for the CoreMedia brand-token phase — see TODO.md.
+ * Light theme. All vars reference --kio-semantic-* tokens from tokens.json.
+ * No raw oklch values. Dark-mode overrides in .dark {} repoint the semantic
+ * layer; everything above automatically follows.
  */
 :root {
-  --background: var(--kio-color-semantic-background);
-  --foreground: var(--kio-color-semantic-foreground);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: var(--kio-color-brand-primary);
-  --primary-foreground: var(--kio-color-brand-primary-foreground);
-  --secondary: var(--kio-color-neutral-100);
-  --secondary-foreground: var(--kio-color-neutral-900);
-  --muted: var(--kio-color-neutral-100);
-  --muted-foreground: var(--kio-color-neutral-500);
-  --accent: var(--kio-color-neutral-100);
-  --accent-foreground: var(--kio-color-neutral-900);
-  --destructive: var(--kio-color-severity-error);
-  --border: var(--kio-color-semantic-border);
-  --input: var(--kio-color-neutral-200);
-  --ring: var(--kio-color-neutral-400);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background:         var(--kio-semantic-surface-page);
+  --foreground:         var(--kio-semantic-text-primary);
+  --card:               var(--kio-semantic-surface-card);
+  --card-foreground:    var(--kio-semantic-text-primary);
+  --popover:            var(--kio-semantic-surface-popover);
+  --popover-foreground: var(--kio-semantic-text-primary);
+
+  --primary:            var(--kio-semantic-interactive-primary);
+  --primary-foreground: var(--kio-semantic-interactive-primary-fg);
+
+  --secondary:             var(--kio-semantic-surface-muted);
+  --secondary-foreground:  var(--kio-semantic-text-on-surface-primary);
+  --muted:                 var(--kio-semantic-surface-muted);
+  --muted-foreground:      var(--kio-semantic-text-secondary);
+  --accent:                var(--kio-semantic-surface-accent);
+  --accent-foreground:     var(--kio-semantic-text-on-surface-primary);
+
+  --destructive: var(--kio-semantic-status-error);
+  --success:     var(--kio-semantic-status-success);
+  --warning:     var(--kio-semantic-status-warning);
+  --info:        var(--kio-semantic-status-info);
+
+  --border: var(--kio-semantic-border-default);
+  --input:  var(--kio-semantic-border-default);
+  --ring:   var(--kio-semantic-interactive-ring);
+
+  --chart-1: var(--kio-color-chart-1);
+  --chart-2: var(--kio-color-chart-2);
+  --chart-3: var(--kio-color-chart-3);
+  --chart-4: var(--kio-color-chart-4);
+  --chart-5: var(--kio-color-chart-5);
+
   --radius: var(--kio-radius-lg);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 
-  /* Severity (system-message) semantic vars, backed by tokens. Kept distinct
-     from the brand stops so functional reds/greens never read as brand;
-     constant across themes. */
-  --success: var(--kio-color-severity-success);
-  --warning: var(--kio-color-severity-warning);
-  --info: var(--kio-color-severity-neutral);
+  --sidebar:                    var(--kio-semantic-surface-sidebar);
+  --sidebar-foreground:         var(--kio-semantic-text-primary);
+  --sidebar-primary:            var(--kio-color-neutral-900);
+  --sidebar-primary-foreground: var(--kio-semantic-surface-page);
+  --sidebar-accent:             var(--kio-semantic-surface-muted);
+  --sidebar-accent-foreground:  var(--kio-semantic-text-on-surface-primary);
+  --sidebar-border:             var(--kio-semantic-border-default);
+  --sidebar-ring:               var(--kio-semantic-interactive-ring);
 
-  /* Brand gradient — composed from the three brand stops (tokens). The three
-     colors together ARE the main brand color; the app header uses this as its
-     background. The brand phase only needs to update color.brand.* in
-     tokens.json for this to follow. */
   --brand-gradient: linear-gradient(
     90deg,
     var(--kio-color-brand-red) 0%,
@@ -116,38 +112,34 @@
   );
 }
 
+/*
+ * Dark theme. Overrides the --kio-semantic-* layer only — no Tailwind vars
+ * set directly. Flip --kio-semantic-interactive-primary here once real dark
+ * brand tokens arrive.
+ */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: var(--kio-color-severity-error);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --kio-semantic-surface-page:    oklch(0.145 0 0);
+  --kio-semantic-surface-card:    oklch(0.205 0 0);
+  --kio-semantic-surface-popover: oklch(0.205 0 0);
+  --kio-semantic-surface-sidebar: oklch(0.205 0 0);
+  --kio-semantic-surface-muted:   oklch(0.269 0 0);
+  --kio-semantic-surface-accent:  oklch(0.269 0 0);
+
+  --kio-semantic-text-primary:             oklch(0.985 0 0);
+  --kio-semantic-text-secondary:           oklch(0.708 0 0);
+  --kio-semantic-text-disabled:            oklch(0.439 0 0);
+  --kio-semantic-text-on-surface-primary:  oklch(0.985 0 0);
+
+  --kio-semantic-border-default: oklch(1 0 0 / 10%);
+  --kio-semantic-border-subtle:  oklch(1 0 0 / 6%);
+  --kio-semantic-border-strong:  oklch(0.556 0 0);
+
+  --kio-semantic-interactive-primary:    oklch(0.922 0 0);
+  --kio-semantic-interactive-primary-fg: oklch(0.205 0 0);
+  --kio-semantic-interactive-ring:       oklch(0.556 0 0);
+
+  --sidebar-primary:            oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
@@ -159,8 +151,6 @@
   }
   html {
     @apply font-sans;
-    /* Crisper text: grayscale smoothing (via `antialiased` on body) plus
-       legibility-tuned rendering and no iOS auto-upscaling. */
     text-rendering: optimizeLegibility;
     -webkit-text-size-adjust: 100%;
   }
