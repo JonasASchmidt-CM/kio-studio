@@ -27,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+claude_desktop_settings.json
+kio-studio@0.0.0
+style-dictionary
